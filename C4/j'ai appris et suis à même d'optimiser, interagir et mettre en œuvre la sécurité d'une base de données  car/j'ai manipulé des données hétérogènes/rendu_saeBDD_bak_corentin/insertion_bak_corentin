@@ -1,0 +1,56 @@
+insert into auteurs (auteur_nom, auteur_pnom, auteur_maxime, auteur_a_propos, auteur_dateNai) values
+('Mestres','Sergi','Parfois l art fonctionne comme un miroir qui nous montre comment nous sommes et comment nous nous voyons de l intérieur.','Originaire de la province de Barcelone, Sergi s intéresse depuis toujours aux arts plastiques et créatifs. Enfant, il s adonne avec passion à la pratique du dessin et de la peinture, ce qui le conduit, à l âge de douze ans, à débuter un apprentissage des techniques artistiques à l école d art de Vilanova i la Geltrú, qu il mènera en parallèle de ses études générales. Après plusieurs années dévolues à la connaissance des savoir-faire classiques, l intérêt du jeune peintre se porte vers les pratiques urbaines et contemporaines, dont les fondements critiques et esthétiques seront à l origine de sa démarche personnelle ; son travail sera récompensé en 2006 par l organisation de sa première exposition personnelle au Centre civique de sa ville natale.','01/01/1972'),
+('Rey','Julien','Formé en autodidacte, j ai appris en m imprégnant et m inspirant des multiples cultures, au fil de mes découvertes.','Bien qu étant achromatopsique (absence de perception des couleurs), Julien Rey nous fait voyager à travers ses toiles aux paysages urbains. L histoire de Julien Rey commence comme toutes les belles histoires : par un rêve impossible. Achromatopsique, l artiste ne voit qu en noir et blanc. Pourtant, cette maladie ne l empêche pas de voyager aux confins de la Birmanie, de changer de vie (il y devient moine bouddhiste) ou de se lancer dans l art. De son voyage en Birmanie, il ramène une parfaite maîtrise de la feuille d or, élément caractéristique de son travail. Sa technique à base de laque travaillée au couteau et d incrustations de feuille d or place la lumière au centre de ses œuvres. Marqué par la philosophie zen, il réalise des compositions minimales qui apparaissent comme des instants suspendus, des pauses poétiques.','01/01/1985'),
+('Klein','Bruno','Peindre, c est entrer dans la toile avec force et envie. Tout s éteint autour de l artiste. Seuls restent en communion sa main, son âme et le support.','Pendant de nombreuses années, Bruno pratique la peinture à ses heures perdues. Il travaille dans une cellule de presse pour laquelle il réalise des reportages photographiques. Ce métier lui permet de faire de nombreux voyages et d’imprégner sa mémoire d’une importante ??galerie?? d’images : la souffrance, la solitude, le désarroi, la révolte, les rencontres de responsables politiques, d artistes, de personnels des ONG… Il voit et écoute tout ce qui l’entoure. Ses débuts dans la peinture commencent en 1995. Petit à petit, à force de travail, se trace un chemin artistique et un style apparaît. En 2009 s’opère un tournant essentiel dans sa carrière : Bruno quitte son métier pour se consacrer entièrement à sa passion. Des rencontres importantes marquent son parcours : Henry Gault (peintre) le forme à la rigueur du dessin et Miro Sego (maître des Beaux-arts de Belgrade) lui apprend l’impressionnisme et la gestuelle. A l’Ecole Supérieure des Arts Décoratifs de Strasbourg, Elisabeth Frering (peintre) l’initie à l’expression libre de la forme et de la couleur.','01/01/1959'),
+('Rocco','Sophie','Les visages occupent l espace et les couleurs de mes toiles et traduisent une vision et une douleur au monde, une souffrance muette.',' Peintre et sculptrice contemporaine, Sophie Rocco débute une pratique picturale dès l enfance. Autodidacte, elle réussi à quatorze ans le concours d entrée en arts plastiques du collège Ganneron à Paris puis intègre l école d art graphique Sornas où elle "apprend au contact de maitres, peintres réalistes contemporains qui l initient au dessin et dont leur peinture va longtemps l inspirer". à cela s ajoute son amour inconditionnel pour la culture et les musées, enrichi par ses nombreux voyages aux quatre coins du monde, qui ont joué un rôle essentiel dans son épanouissement tant personnel qu artistique. Imprégnée d un sentiment profond d isolement vis-à-vis du monde qui l entoure, Sophie s est patiemment construit une identité artistique et plastique résolument singulière, centrée sur l exploration de l âme humaine.','01/01/1945'),
+('Devie','Bernard','C était comme s il n y avait pas de noms, ici, comme s il n y avait pas de paroles. Le désert lavait tout dans son vent, effaçait tout. Les hommes avaient la liberté de l espace dans leur regard, leur peau était pareille au métal. ( J.M.G. Le Clésio)','C est à l âge de 12 ans que Bernard DEVIE se découvre un intérêt pour l art et particulièrement la peinture. Faute de place en atelier de théâtre, son collège lui propose l atelier peinture où il s épanouit très vite. Il s oriente ensuite vers l architecture mais comprend vite que le travail et la vie en agence ne lui conviennent pas. Bernard s oriente alors vers l enseignement à destination des jeunes enfants et consacre ses soirées aux cours de peinture et de modelage. L artiste s installe à Grenoble en 1974, puis à Lyon en 1988 et partage sa vie entre l enseignement et l art. C est au milieu des années 2000 qu il décide de se consacrer pleinement à la peinture.','01/01/1953');
+
+insert into oeuvres (oeuvre_titre,oeuvre_descrip,oeuvre_dim_larg,oeuvre_dim_haut,prix_TTC,en_stock,auteur_id) values
+('mickey mouse in gold and black','Cette oeuvre d art contemporain unique et originale (mickey mouse in gold and black) a été réalisée par l artiste contemporain Mestres Sergi.
+L artiste a utilisé les techniques Acrylique, Mixte pour créer cette peinture petit format sur carton de style Pop Art sur le thème icones Pop. ',36,36,460,true,1),
+('I AM NAPOLEON','Cette oeuvre d art contemporain unique et originale (I AM NAPOLEON) a été réalisée par l artiste contemporain Mestres Sergi.
+L artiste a utilisé les techniques Acrylique, Mixte pour créer cette peinture petit format sur carton de style Pop Art sur le thème icones Pop.',36,36,460,true,1),
+('Nocturn','Cette oeuvre d art contemporain unique et originale (80x80 No Name 10006-1539-20221119-11) a été réalisée par l artiste contemporain Rey Julien.
+L artiste a utilisé la technique Mixte pour créer cette peinture grand format sur carton de style Figuratif.',80,80,1800,true,2),
+('Mystery','Cette oeuvre d art contemporain unique et originale (80x80 No Name 106-1539-20221102-1) a été réalisée par l artiste contemporain Rey Julien.
+L artiste a utilisé la technique Mixte pour créer cette peinture grand format sur carton de style Figuratif.',80,80,1800,true,2),
+('Le jour se leve','Cette oeuvre d art contemporain unique et originale (Le jour se leve) a été réalisée par l artiste contemporain Klein Bruno.
+L artiste a utilisé la technique Huile pour créer cette peinture petit format sur toile de style Figuratif sur les thèmes Paysages, Vues marines.',36,36,460,true,3),
+('Tout le long de la digue',' Cette oeuvre d art contemporain unique et originale (Tout le long de la digue) a été réalisée par l artiste contemporain Klein Bruno.
+L artiste a utilisé la technique Huile pour créer cette peinture petit format sur toile de style Figuratif sur les thèmes Paysages, Vues marines.',36,36,460,true,3),
+('Complicité','Cette oeuvre d art contemporain unique et originale (Complicité) a été réalisée par l artiste contemporain Rocco Sophie.
+L artiste a utilisé les techniques Acrylique, Mixte pour créer cette peinture petit format sur carton de style Art Singulier. ',36,36,460,true,4),
+('LE MIROIR BLEU','Cette oeuvre d art contemporain unique et originale (LE MIROIR BLEU) a été réalisée par l artiste contemporain Rocco Sophie.
+L artiste a utilisé la technique Mixte pour créer cette peinture petit format sur toile de style Art Singulier sur le thème scènes de vie. ', 25,25,265,true,4),
+('Aurore dans le désert','Cette oeuvre d art contemporain unique et originale (Aurore dans le désert) a été réalisée par l artiste contemporain Devie Bernard .
+L artiste a utilisé la technique Mixte pour créer cette peinture grand format sur toile de style Art Singulier sur le thème Paysages. ',100,70,1420,true,5),
+('Clair de lune tropical',' Cette oeuvre d art contemporain unique et originale (Clair de lune tropical) a été réalisée par l artiste contemporain Devie Bernard .
+L artiste a utilisé la technique Mixte pour créer cette peinture grand format sur toile de style Art Singulier sur le thème Paysages. ',100,70,1420,true,5);
+
+
+
+INSERT INTO Clients VALUES(1,'Biscaras','Pierre','10 rue de l empire',60000,'Beauvais','biscarasPierre@gmail.com',0,0);
+INSERT INTO Clients VALUES(2,'Biscaras','Antoine','10 rue de l empire',60000,'Beauvais','biscarasAntoine@gmail.com',0,0);
+INSERT INTO Clients VALUES(3,'Pouly','Lilian','10 rue du gouffre',63000,'Gonfreville','PoulyLilian@gmail.com',0,0);
+INSERT INTO Clients VALUES(4,'Jean','Pierre','3 avenue du cirque',62100,'Calais','JeanPierre@gmail.com',0,0);
+INSERT INTO Clients VALUES(5,'Malou','Eddy','place vogel',59000,'Amiens','MalouEddy@gmail.com',0,0);
+INSERT INTO Clients VALUES(6,'Camard','Benjamin','501 rue de l empire',60000,'Beauvais','CamardBenjamin@gmail.com',0,0);
+INSERT INTO Clients VALUES(7,'Bak','Corentin','656 rue Yervant Toumaniantz',62100,'Calais','BakCorentin@gmail.com',0,0);
+INSERT INTO Clients VALUES(8,'Flament','Marina','11 rue de l empire',60000,'Beauvais','FlamentMarina@gmail.com',0,0);
+
+
+INSERT INTO Factures VALUES(1,'05/12/2022', 0,0,8);
+INSERT INTO Factures VALUES(2,'05/12/2022', 0,0,1);
+INSERT INTO Factures VALUES(3,'05/12/2022', 0,0,7);
+
+
+INSERT INTO Ventes VALUES(1,1,1);
+INSERT INTO Ventes VALUES(2,2,1);
+INSERT INTO Ventes VALUES(3,3,1);
+INSERT INTO Ventes VALUES(4,4,2);
+INSERT INTO Ventes VALUES(5,5,2);
+INSERT INTO Ventes VALUES(6,6,3);
+INSERT INTO Ventes VALUES(7,7,3);
+INSERT INTO Ventes VALUES(8,8,3);
+INSERT INTO Ventes VALUES(9,9,3);
+INSERT INTO Ventes VALUES(10,10,3);

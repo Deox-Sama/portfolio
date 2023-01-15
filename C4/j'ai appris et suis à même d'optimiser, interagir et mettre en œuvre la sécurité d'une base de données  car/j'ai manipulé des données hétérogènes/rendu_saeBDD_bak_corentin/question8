@@ -1,0 +1,10 @@
+create or replace view nb_ventes as select count(*) as nbr_ventes from oeuvres O 
+inner join auteurs Au on O.auteur_id = Au.auteur_id WHERE O.en_stock = 'f' group by Au.auteur_id;
+
+create or replace function best() returns setof bigint as $$
+begin 
+    return query Select max(nbr_ventes) from nb_ventes;
+end;
+$$ LANGUAGE plpgsql;
+
+select best();

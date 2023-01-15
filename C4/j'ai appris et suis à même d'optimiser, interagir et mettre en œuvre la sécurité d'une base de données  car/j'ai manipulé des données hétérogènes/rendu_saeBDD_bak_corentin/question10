@@ -1,0 +1,41 @@
+CREATE OR REPLACE FUNCTION display_fac(f_id INTEGER) RETURNS VOID AS
+$$
+DECLARE
+    fac_cursor CURSOR FOR
+        SELECT 
+            f.fac_id,
+            f.date_fac,
+            f.montant_TTC,
+            f.fac_nb_oeuvre,
+            c.cli_id,
+            c.cli_nom,
+            c.cli_pnom,
+            c.cli_adr,
+            c.cli_CP,
+            c.cli_Ville,
+            c.cli_Mail,
+            c.cli_CA,
+            c.cli_nb_oeuvres
+        FROM Factures f INNER JOIN Clients c ON f.cli_id = c.cli_id WHERE f.fac_id = f_id;
+BEGIN
+    FOR f_rec IN fac_cursor LOOP
+        -- print the details of the factures table
+        RAISE NOTICE 'fac ID: %', f_rec.fac_id;
+        RAISE NOTICE 'fac date: %', f_rec.date_fac;
+        RAISE NOTICE 'Total amount: %', f_rec.montant_TTC;
+        RAISE NOTICE 'Number of art: %', f_rec.fac_nb_oeuvre;
+        RAISE NOTICE 'Client ID: %', f_rec.cli_id;
+        RAISE NOTICE 'Client name: %', f_rec.cli_nom;
+        RAISE NOTICE 'Client address: %', f_rec.cli_adr;
+        RAISE NOTICE 'Client postal code: %', f_rec.cli_CP;
+        RAISE NOTICE 'Client city: %', f_rec.cli_Ville;
+        RAISE NOTICE 'Client email: %', f_rec.cli_Mail;
+        RAISE NOTICE 'Client total purchases: %', f_rec.cli_CA;
+        RAISE NOTICE 'Number of art purchased: %', f_rec.cli_nb_oeuvres;
+    END LOOP;
+END;
+$$
+LANGUAGE plpgsql;
+
+SELECT display_fac(2);
+

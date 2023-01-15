@@ -1,0 +1,24 @@
+CREATE OR REPLACE FUNCTION archive_client_when_delete() RETURNS trigger AS
+$$
+DECLARE 
+delete_date DATE;
+delete_user text;
+BEGIN
+  -- register the current date
+  delete_date = current_timestamp;
+
+  -- register the current user
+  delete_user = current_user;
+
+  -- Insert data of the delete client with the delete_date and the name of the current user which delete the client
+  INSERT INTO archivages_client (cli_id_ar, cli_nom_ar, cli_pnom_ar, cli_adr_ar, cli_CP_ar,cli_ville_ar,cli_mail_ar,cli_CA_ar,cli_nb_oeuvres_ar, delete_user, delete_date)
+  VALUES (OLD.cli_id, OLD.cli_nom, OLD.cli_pnom, OLD.cli_adr, OLD.cli_CP, OLD.cli_ville, OLD.cli_mail, OLD.cli_CA, OLD.cli_nb_oeuvres,delete_user ,delete_date );
+
+  -- Return client data
+  RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER archive_client_when_delete
+AFTER DELETE ON clients
+FOR EACH ROW EXECUTE PROCEDURE archive_client_when_delete();

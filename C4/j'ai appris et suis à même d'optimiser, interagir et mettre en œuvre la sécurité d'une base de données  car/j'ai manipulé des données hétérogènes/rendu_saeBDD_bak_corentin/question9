@@ -1,0 +1,6 @@
+SELECT Au.auteur_nom FROM auteurs Au INNER JOIN oeuvres O ON O.auteur_id = Au.auteur_id
+GROUP BY Au.auteur_nom
+HAVING COUNT(O.oeuvre_id) BETWEEN 0.8 *(select best()) AND 0.9 * (select best());
+
+
+

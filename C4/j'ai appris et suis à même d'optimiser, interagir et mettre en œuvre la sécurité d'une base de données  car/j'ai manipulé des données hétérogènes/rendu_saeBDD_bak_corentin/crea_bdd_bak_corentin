@@ -1,0 +1,49 @@
+DROP TABLE IF EXISTS Oeuvres ;
+CREATE TABLE Oeuvres (
+Oeuvre_Id SERIAL PRIMARY KEY NOT NULL,
+Oeuvre_titre VARCHAR(50),
+oeuvre_descrip TEXT,
+oeuvre_dim_larg FLOAT,
+oeuvre_dim_haut FLOAT,
+prix_TTC FLOAT DEFAULT 0,
+en_stock BOOLEAN,
+auteur_id integer);
+
+DROP TABLE IF EXISTS Auteurs ;
+CREATE TABLE Auteurs (
+Auteur_Id SERIAL PRIMARY KEY NOT NULL,
+auteur_nom VARCHAR(50),
+auteur_pnom VARCHAR(50),
+auteur_maxime TEXT,
+auteur_A_Propos TEXT,
+Auteur_dateNai DATE);
+
+DROP TABLE IF EXISTS Clients ;
+CREATE TABLE Clients (
+cli_id SERIAL PRIMARY KEY NOT NULL,
+cli_nom VARCHAR(50),
+cli_pnom VARCHAR(50),
+cli_adr VARCHAR(50),
+cli_CP INTEGER,
+cli_Ville VARCHAR(50),
+cli_Mail VARCHAR(50),
+cli_CA FLOAT DEFAULT 0,
+cli_nb_oeuvres INTEGER DEFAULT 0);
+
+DROP TABLE IF EXISTS Factures ;
+CREATE TABLE Factures (
+fac_id SERIAL PRIMARY KEY NOT NULL,
+date_fac DATE,
+montant_TTC FLOAT,
+fac_nb_oeuvre INTEGER DEFAULT 0,
+cli_id integer);
+
+DROP TABLE IF EXISTS ventes ;
+CREATE TABLE ventes (Vente_Id SERIAL PRIMARY KEY NOT NULL,
+oeuvre_id integer,
+fac_id integer);
+
+ALTER TABLE Oeuvres ADD CONSTRAINT FK_Oeuvres_Auteur_Id FOREIGN KEY (Auteur_Id) REFERENCES Auteurs (Auteur_Id);
+ALTER TABLE Factures ADD CONSTRAINT FK_Factures_cli_id FOREIGN KEY (cli_id) REFERENCES Clients (cli_id);
+ALTER TABLE ventes ADD CONSTRAINT FK_ventes_Oeuvre_Id FOREIGN KEY (Oeuvre_Id) REFERENCES Oeuvres (Oeuvre_Id);
+ALTER TABLE ventes ADD CONSTRAINT FK_ventes_fac_id FOREIGN KEY (fac_id) REFERENCES Factures (fac_id);

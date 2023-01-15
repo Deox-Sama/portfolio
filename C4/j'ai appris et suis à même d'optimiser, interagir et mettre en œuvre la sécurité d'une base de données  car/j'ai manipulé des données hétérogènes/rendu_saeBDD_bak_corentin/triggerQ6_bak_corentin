@@ -1,0 +1,65 @@
+CREATE OR REPLACE FUNCTION Update_Client_Stats_Function()
+RETURNS TRIGGER AS $$
+DECLARE
+  rec record;
+  rec_old record;
+  rec_cli record;
+  rec_cli_old record;
+BEGIN
+	if(tg_table_name='ventes') then
+		if(tg_op = 'INSERT') then
+			select cli_id into rec_cli from clients where cli_id in (select cli_id from factures where fac_id = NEW.fac_id);
+			select prix_TTC into rec from oeuvres where oeuvre_id=NEW.oeuvre_id; 
+  	    	--Update the en_stock fild in the Oeuvres table
+  			UPDATE Oeuvres SET en_stock = false	where oeuvre_id = NEW.oeuvre_id;
+  			-- Update fac_nb_oeuvre and montant_TTC fields in the Factures table
+  			UPDATE Factures SET fac_nb_oeuvre = fac_nb_oeuvre + 1, montant_TTC = montant_TTC + rec.prix_TTC WHERE fac_id = NEW.fac_id;
+			-- Update on clients table on cli_ca and cli_nb_oeuvres
+			UPDATE Clients SET cli_nb_oeuvres = cli_nb_oeuvres + 1, cli_ca = cli_ca + rec.prix_TTC where cli_id = rec_cli.cli_id;
+		end if;
+		
+		if(tg_op = 'UPDATE') then
+			SELECT prix_TTC INTO rec FROM oeuvres WHERE oeuvre_id = NEW.oeuvre_id; 
+			SELECT prix_TTC INTO rec_old FROM oeuvres WHERE oeuvre_id = OLD.oeuvre_id;
+			select cli_id into rec_cli_old from clients where cli_id in (select cli_id from factures where fac_id = OLD.fac_id);
+			select cli_id into rec_cli from clients where cli_id in (select cli_id from factures where fac_id = NEW.fac_id);
+
+			-- Update the en_stock field in the Oeuvres table
+			UPDATE Oeuvres SET en_stock = true WHERE oeuvre_id = OLD.oeuvre_id;
+			UPDATE Oeuvres SET en_stock = false WHERE oeuvre_id = NEW.oeuvre_id;
+			
+			-- Update fac_nb_oeuvre and montant_TTC fields in the Factures table
+			UPDATE Factures SET montant_TTC = montant_TTC - rec_old.prix_TTC WHERE fac_id = OLD.fac_id;
+			UPDATE Factures SET montant_TTC = montant_TTC + rec.prix_TTC WHERE fac_id = NEW.fac_id;
+			UPDATE Factures SET fac_nb_oeuvre = fac_nb_oeuvre + 1 WHERE fac_id = NEW.fac_id;
+			UPDATE Factures SET fac_nb_oeuvre = fac_nb_oeuvre - 1 WHERE fac_id = OLD.fac_id;
+			
+			-- Update on clients table on cli_ca and cli_nb_oeuvres
+			UPDATE Clients SET cli_nb_oeuvres = cli_nb_oeuvres - 1 WHERE cli_id = rec_cli_old.cli_id;
+			UPDATE Clients SET cli_nb_oeuvres = cli_nb_oeuvres + 1 WHERE cli_id = rec_cli.cli_id;
+			UPDATE Clients SET cli_ca = cli_ca - rec_old.prix_TTC WHERE cli_id = rec_cli_old.cli_id;
+			UPDATE Clients SET cli_ca = cli_ca + rec.prix_TTC WHERE cli_id =  rec_cli.cli_id;
+
+		end if;
+			
+		if(tg_op = 'DELETE') then
+			select cli_id into rec_cli from clients where cli_id in (select cli_id from factures where fac_id=OLD.fac_id);
+			select prix_TTC into rec from oeuvres where oeuvre_id=OLD.oeuvre_id; 
+			--Update the en_stock fild in the Oeuvres table
+			UPDATE Oeuvres SET en_stock = true	where oeuvre_id = OLD.oeuvre_id;
+		  	-- Update fac_nb_oeuvre and montant_TTC fields in the Factures table
+			UPDATE Factures SET fac_nb_oeuvre = fac_nb_oeuvre - 1, montant_TTC = montant_TTC - rec.prix_TTC WHERE fac_id = OLD.fac_id;
+			-- Update on clients table on cli_ca and cli_nb_oeuvres
+			UPDATE Clients SET cli_nb_oeuvres = cli_nb_oeuvres - 1, cli_ca = cli_ca - rec.prix_TTC where cli_id = rec_cli.cli_id;
+		end if;
+		
+	end if;
+RETURN NEW;	
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE or replace TRIGGER Update_Client_Stats
+AFTER INSERT or DELETE or UPDATE ON ventes
+FOR EACH ROW
+EXECUTE PROCEDURE Update_Client_Stats_Function();
